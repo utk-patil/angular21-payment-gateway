@@ -1,0 +1,6 @@
+@PaymentService.Webhook_HostAddress = http://localhost:5165
+
+GET {{PaymentService.Webhook_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
