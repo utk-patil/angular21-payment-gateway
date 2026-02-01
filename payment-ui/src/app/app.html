@@ -1,0 +1,24 @@
+<nav class="navbar">
+  <div class="brand">Payment Portal</div>
+
+  <div class="menu">
+    <a
+      routerLink="/payment"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Pay
+    </a>
+
+    <a
+      routerLink="/transactions"
+      routerLinkActive="active"
+    >
+      Transactions
+    </a>
+  </div>
+</nav>
+
+<div class="page-container">
+  <router-outlet></router-outlet>
+</div>

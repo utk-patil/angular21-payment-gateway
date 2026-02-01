@@ -1,0 +1,34 @@
+.navbar {
+  height: 56px;
+  background-color: #000; /* BLACK */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.menu a {
+  color: #fff;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 15px;
+  padding-bottom: 4px;
+}
+
+.menu a:hover {
+  color: #90caf9;
+}
+
+.menu a.active {
+  border-bottom: 2px solid #90caf9;
+}
+
+.page-container {
+  padding: 20px;
+}

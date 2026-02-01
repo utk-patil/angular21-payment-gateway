@@ -1,0 +1,45 @@
+<div class="gateway-wrapper">
+  <div class="gateway-card">
+
+    <h2 class="title">Demo Payment Gateway</h2>
+
+    @if (loading()) {
+      <p class="loading">Loading payment details…</p>
+    }
+
+    @if (!loading() && error()) {
+      <p class="error">{{ error() }}</p>
+    }
+
+    @if (!loading() && !error()) {
+
+      <div class="detail">
+        <label>Order ID</label>
+        <div class="value">{{ orderId() }}</div>
+      </div>
+
+      <div class="detail">
+        <label>Amount</label>
+        <div class="value">
+          ₹ {{ amount() }}
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" (click)="confirm(true)" [disabled]="loading()">
+          Pay Now
+        </button>
+
+        <button class="btn secondary" (click)="confirm(false)" [disabled]="loading()">
+          Cancel
+        </button>
+      </div>
+
+      <p class="note">
+        This is a demo payment page. No real money is involved.
+      </p>
+
+    }
+
+  </div>
+</div>

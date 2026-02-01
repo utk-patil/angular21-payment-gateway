@@ -1,0 +1,45 @@
+<h2>Create Payment</h2>
+
+<form #paymentForm="ngForm" (ngSubmit)="pay(paymentForm)">
+
+  <div class="form-group">
+    <label for="orderId">Order ID</label>
+    <input id="orderId" name="orderId" type="text" required minlength="3"
+      [ngModel]="orderId()" (ngModelChange)="orderId.set($event)" #orderIdCtrl="ngModel"/>
+
+    @if (orderIdCtrl.invalid && orderIdCtrl.touched) {
+      <small class="error">
+        Order ID is required (min 3 characters)
+      </small>
+    }
+  </div>
+
+  <div class="form-group">
+    <label for="amount">Amount</label>
+
+    <div class="amount-input">
+      <span class="currency">₹</span>
+      <input id="amount" name="amount" type="number" required min="1"
+        [ngModel]="amount()" (ngModelChange)="amount.set($event)" #amountCtrl="ngModel"/>
+    </div>
+
+    @if (amountCtrl.invalid && amountCtrl.touched) {
+      <small class="error">
+        Amount must be greater than 0
+      </small>
+    }
+  </div>
+
+  <button class="primary" type="submit" [disabled]="paymentForm.invalid || loading()">
+    @if (loading()) {
+      Processing...
+    } @else {
+      Pay ₹ {{ amount() || '' }}
+    }
+  </button>
+
+</form>
+
+@if (error()) {
+  <p class="error-message">{{ error() }}</p>
+}

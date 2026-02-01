@@ -1,0 +1,19 @@
+.card {
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 30px;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.cancel {
+  border: 1px solid #c62828;
+}
+
+a {
+  display: inline-block;
+  margin-top: 15px;
+  color: #c62828;
+  text-decoration: none;
+  font-weight: 600;
+}

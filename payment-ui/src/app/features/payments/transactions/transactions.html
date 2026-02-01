@@ -1,0 +1,101 @@
+<h2>Transactions</h2>
+
+<div class="filter-bar">
+
+  <div class="filter-group">
+    <label for="search">Search</label>
+    <input id="search" type="text" placeholder="Order ID / Provider Ref" [value]="search()"
+      (input)="search.set($any($event.target).value)"/>
+  </div>
+
+  <div class="filter-group">
+    <label for="status">Status</label>
+    <select id="status" [value]="status()" (change)="status.set($any($event.target).value)">
+      <option value="">All</option>
+      <option value="Success">Success</option>
+      <option value="Failed">Failed</option>
+      <option value="Processing">Processing</option>
+    </select>
+  </div>
+
+  <div class="filter-actions">
+    <button class="secondary" (click)="clearFilter()">Clear</button>
+  </div>
+
+</div>
+
+@if (loading()) {
+  <p class="info">Loading...</p>
+} @else {
+
+  @if (transactions().length === 0) {
+    <p class="info">No transactions found</p>
+  } @else {
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th class="center">Id</th>
+            <th>Order ID</th>
+            <th>Provider Ref</th>
+            <th class="right">Amount</th>
+            <th class="center">Status</th>
+            <th>Updated On</th>
+            <th class="center">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (t of transactions(); track t.id) {
+            <tr>
+              <td class="center">{{ t.id }}</td>
+              <td>{{ t.orderId }}</td>
+              <td>{{ t.providerReference ?? '-' }}</td>
+              <td class="right">₹ {{ t.amount }}</td>
+
+              <td class="center">
+                <span class="status"
+                  [class.success]="t.status === 'Success'"
+                  [class.failed]="t.status === 'Failed'"
+                  [class.processing]="t.status === 'Processing'">
+                  {{ t.status }}
+                </span>
+              </td>
+
+              <td>{{ t.updatedOn | localDateTime }}</td>
+
+              <td class="center">
+                @if (t.status === 'Failed' || t.status === 'Processing' || t.status === 'Initiated') {
+                  <button class="primary repay" (click)="repay(t)">
+                    Repay
+                  </button>
+                } @else {
+                  -
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      @if (totalPages() > 1) {
+        <div class="pagination">
+          <button (click)="prev()" [disabled]="pageNumber() === 1">
+            Prev
+          </button>
+
+          <span>
+            Page {{ pageNumber() }} of {{ totalPages() }}
+            ({{ totalRecords() }} records)
+          </span>
+
+          <button (click)="next()" [disabled]="pageNumber() === totalPages()">
+            Next
+          </button>
+        </div>
+      }
+    </div>
+
+  }
+}
