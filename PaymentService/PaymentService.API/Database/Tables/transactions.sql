@@ -8,9 +8,6 @@
     UpdatedOn DATETIME2 NULL
 );
 GO
-
-ALTER TABLE [dbo].[Transactions] ADD  DEFAULT (getutcdate()) FOR [CreatedOn]
-GO
     
 INSERT INTO Transactions
 (OrderId, ProviderReference, Amount, Status, CreatedOn, UpdatedOn)
@@ -55,3 +52,4 @@ VALUES
 ('ORD-1035', 'pay_PaDLR9QX7WKm20', 390.00, 'Failed', GETUTCDATE(), GETUTCDATE());
 
 GO
+
