@@ -138,7 +138,8 @@ ng serve
 ### URLs
 ```
 Angular App:   http://localhost:4200
-API Swagger:  http://localhost:7296/swagger
+API Swagger:  http://localhost:7043/swagger
+Webhook Swagger:  http://localhost:7296/swagger
 ```
 
 ---
